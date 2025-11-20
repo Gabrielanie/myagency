@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel Anie | Digital Agency</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2a2a72;
+            --secondary: #009ffd;
+            --accent: #ff6b6b;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .navbar {
+            padding: 1.5rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 150px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,197.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #ff5252;
+            border-color: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2.5rem 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            border: none;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            cursor: pointer;
+        }
+        
+        .portfolio-img {
+            transition: all 0.5s ease;
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(42, 42, 114, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+        
+        .team-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .team-img {
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin: 1rem;
+        }
+        
+        .testimonial-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+        
+        .contact-info {
+            background: var(--primary);
+            color: white;
+            border-radius: 10px;
+            padding: 3rem 2rem;
+            height: 100%;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 5rem 0 2rem;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+        }
+        
+        /* Modal Styles */
+        .modal-content {
+            border-radius: 15px;
+            border: none;
+            overflow: hidden;
+        }
+        
+        .modal-header {
+            background: var(--primary);
+            color: white;
+            border-bottom: none;
+            padding: 1.5rem 2rem;
+        }
+        
+        .modal-body {
+            padding: 2rem;
+        }
+        
+        .modal-footer {
+            border-top: none;
+            padding: 1rem 2rem 2rem;
+        }
+        
+        .portfolio-modal-img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 1rem 0;
+        }
+        
+        .tech-badge {
+            background: var(--light);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-right: 20px;
+        }
+        
+        .project-link:hover {
+            color: var(--secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Gabriel Anie</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#team">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="hero-title">Digital Solutions That Drive Growth</h1>
+                    <p class="hero-subtitle">We create stunning digital experiences that help businesses thrive in the modern world. Our team of experts delivers innovative solutions tailored to your unique needs.</p>
+                    <a href="#contact" class="btn btn-primary">Get Started</a>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Digital Agency" class="img-fluid rounded-3">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h2 class="section-title">About Our Agency</h2>
+                    <p class="mb-4">Gabriel Anie Digital Agency is a full-service digital marketing and web development agency dedicated to helping businesses succeed online. With over 10 years of experience, we've helped hundreds of clients achieve their digital goals.</p>
+                    <p class="mb-4">Our team of skilled professionals combines creativity with technical expertise to deliver results-driven solutions. We believe in building long-term partnerships with our clients, working collaboratively to achieve sustainable growth.</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Custom Web Development</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Digital Marketing Strategy</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Brand Identity Design</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> E-commerce Solutions</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> SEO & Content Marketing</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Social Media Management</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="service-card text-center">
+                                <div class="service-icon mx-auto">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <h4>Web Development</h4>
+                                <p>Custom websites and web applications built with the latest technologies.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="service-card text-center">
+                                <div class="service-icon mx-auto">
+                                    <i class="fas fa-paint-brush"></i>
+                                </div>
+                                <h4>UI/UX Design</h4>
+                                <p>Beautiful, intuitive designs that enhance user experience and engagement.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="service-card text-center">
+                                <div class="service-icon mx-auto">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <h4>Digital Marketing</h4>
+                                <p>Data-driven strategies to increase visibility and drive qualified traffic.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="service-card text-center">
+                                <div class="service-icon mx-auto">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <h4>E-commerce</h4>
+                                <p>Complete online store solutions to grow your business and increase sales.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title">Our Services</h2>
+                    <p class="lead">We offer a comprehensive range of digital services to help your business succeed</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h4>Web Development</h4>
+                        <p>We build responsive, high-performance websites and web applications using the latest technologies and best practices.</p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-check text-primary me-2"></i> Custom Web Applications</li>
+                            <li><i class="fas fa-check text-primary me-2"></i> E-commerce Solutions</li>
+                            <li><i class="fas fa-check text-primary me-2"></i> CMS Development</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h4>App Development</h4>
+                        <p>We create intuitive, feature-rich mobile applications for iOS and Android that engage users and drive business growth.</p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-check text-primary me-2"></i> iOS & Android Apps</li>
+                            <li><i class="fas fa-check text-primary me-2"></i> Cross-Platform Solutions</li>
+                            <li><i class="fas fa-check text-primary me-2"></i> App Store Optimization</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h4>Digital Marketing</h4>
+                        <p>Our data-driven marketing strategies increase your online visibility, drive qualified traffic, and generate leads.</p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-check text-primary me-2"></i> SEO & Content Strategy</li>
+                            <li><i class="fas fa-check text-primary me-2"></i> Social Media Marketing</li>
+                            <li><i class="fas fa-check text-primary me-2"></i> PPC Advertising</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h4>Branding & Design</h4>
+                        <p>We create compelling visual identities that communicate your brand's story and resonate with your target audience.</p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-check text-primary me-2"></i> Logo & Identity Design</li>
+                            <li><i class="fas fa-check text-primary me-2"></i> UI/UX Design</li>
+                            <li><i class="fas fa-check text-primary me-2"></i> Marketing Materials</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h4>Content Creation</h4>
+                        <p>We produce engaging content that tells your brand's story and connects with your audience across all channels.</p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-check text-primary me-2"></i> Video Production</li>
+                            <li><i class="fas fa-check text-primary me-2"></i> Photography</li>
+                            <li><i class="fas fa-check text-primary me-2"></i> Copywriting</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h4>Analytics & Reporting</h4>
+                        <p>We provide comprehensive analytics and reporting to measure performance and optimize your digital strategy.</p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-check text-primary me-2"></i> Performance Tracking</li>
+                            <li><i class="fas fa-check text-primary me-2"></i> Conversion Optimization</li>
+                            <li><i class="fas fa-check text-primary me-2"></i> ROI Analysis</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title">Our Portfolio</h2>
+                    <p class="lead">Check out some of our recent projects and success stories</p>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Portfolio Item 1 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
+                        <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1036&q=80" alt="Project 1" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <div class="text-center text-white">
+                                <h4>E-commerce Platform</h4>
+                                <p>Web Development</p>
+                                <p class="mt-2"><small>Click to view details</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 2 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#portfolioModal2">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80" alt="Project 2" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <div class="text-center text-white">
+                                <h4>Financial Dashboard</h4>
+                                <p>UI/UX Design</p>
+                                <p class="mt-2"><small>Click to view details</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 3 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#portfolioModal3">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Project 3" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <div class="text-center text-white">
+                                <h4>Mobile Banking App</h4>
+                                <p>App Development</p>
+                                <p class="mt-2"><small>Click to view details</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 4 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#portfolioModal4">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Project 4" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <div class="text-center text-white">
+                                <h4>Corporate Website</h4>
+                                <p>Web Development</p>
+                                <p class="mt-2"><small>Click to view details</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 5 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#portfolioModal5">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Project 5" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <div class="text-center text-white">
+                                <h4>Brand Identity</h4>
+                                <p>Branding & Design</p>
+                                <p class="mt-2"><small>Click to view details</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 6 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="portfolio-item" data-bs-toggle="modal" data-bs-target="#portfolioModal6">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Project 6" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <div class="text-center text-white">
+                                <h4>Marketing Campaign</h4>
+                                <p>Digital Marketing</p>
+                                <p class="mt-2"><small>Click to view details</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Modals -->
+    <!-- Modal 1 -->
+    <div class="modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="portfolioModal1Label">E-commerce Platform</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1036&q=80" alt="E-commerce Platform" class="portfolio-modal-img">
+                    <h4>Project Overview</h4>
+                    <p>We developed a comprehensive e-commerce platform for a leading fashion retailer, enabling them to expand their online presence and increase sales by 65% in the first year.</p>
+                    
+                    <h5>Client: StyleHub Fashion</h5>
+                    <p>StyleHub is a premium fashion retailer with over 50 physical stores looking to expand their digital footprint.</p>
+                    
+                    <h5>Challenge</h5>
+                    <p>The client needed a scalable e-commerce solution that could handle high traffic volumes, integrate with their existing inventory system, and provide a seamless shopping experience across all devices.</p>
+                    
+                    <h5>Solution</h5>
+                    <p>We built a custom e-commerce platform using React.js for the frontend and Node.js for the backend. The solution included:</p>
+                    <ul>
+                        <li>Responsive design optimized for all devices</li>
+                        <li>Advanced product filtering and search functionality</li>
+                        <li>Secure payment gateway integration</li>
+                        <li>Inventory management system synchronization</li>
+                        <li>Personalized recommendation engine</li>
+                    </ul>
+                    
+                    <h5>Technologies Used</h5>
+                    <div class="tech-stack">
+                        <span class="tech-badge">React.js</span>
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">MongoDB</span>
+                        <span class="tech-badge">Stripe API</span>
+                        <span class="tech-badge">AWS</span>
+                    </div>
+                    
+                    <h5>Results</h5>
+                    <ul>
+                        <li>65% increase in online sales within first year</li>
+                        <li>40% reduction in cart abandonment rate</li>
+                        <li>Improved mobile conversion rate by 55%</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt me-2"></i> Live Demo</a>
+                    <a href="#" class="project-link"><i class="fab fa-github me-2"></i> View Code</a>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 2 -->
+    <div class="modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="portfolioModal2Label">Financial Dashboard</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80" alt="Financial Dashboard" class="portfolio-modal-img">
+                    <h4>Project Overview</h4>
+                    <p>We designed and developed an intuitive financial dashboard for a wealth management company, helping them visualize complex data and make informed investment decisions.</p>
+                    
+                    <h5>Client: WealthGuard Advisors</h5>
+                    <p>A financial advisory firm managing over $2 billion in assets for high-net-worth individuals.</p>
+                    
+                    <h5>Challenge</h5>
+                    <p>The client needed a dashboard that could consolidate data from multiple sources, provide real-time analytics, and present complex financial information in an easily digestible format.</p>
+                    
+                    <h5>Solution</h5>
+                    <p>We created a custom dashboard with:</p>
+                    <ul>
+                        <li>Interactive data visualizations and charts</li>
+                        <li>Real-time portfolio performance tracking</li>
+                        <li>Risk assessment tools</li>
+                        <li>Customizable reporting features</li>
+                        <li>Secure client portal with role-based access</li>
+                    </ul>
+                    
+                    <h5>Technologies Used</h5>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Vue.js</span>
+                        <span class="tech-badge">D3.js</span>
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">Chart.js</span>
+                    </div>
+                    
+                    <h5>Results</h5>
+                    <ul>
+                        <li>Reduced data analysis time by 70%</li>
+                        <li>Improved client satisfaction scores by 35%</li>
+                        <li>Enabled faster investment decision-making</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt me-2"></i> Live Demo</a>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 3 -->
+    <div class="modal fade" id="portfolioModal3" tabindex="-1" aria-labelledby="portfolioModal3Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="portfolioModal3Label">Mobile Banking App</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Mobile Banking App" class="portfolio-modal-img">
+                    <h4>Project Overview</h4>
+                    <p>We developed a secure and user-friendly mobile banking application for a regional bank, enabling customers to manage their finances on the go.</p>
+                    
+                    <h5>Client: Community First Bank</h5>
+                    <p>A regional bank with over 200 branches serving 500,000+ customers.</p>
+                    
+                    <h5>Challenge</h5>
+                    <p>The client needed a modern mobile banking solution that would provide essential banking features while maintaining the highest security standards and complying with financial regulations.</p>
+                    
+                    <h5>Solution</h5>
+                    <p>We built a cross-platform mobile app with:</p>
+                    <ul>
+                        <li>Secure login with biometric authentication</li>
+                        <li>Account balance and transaction history</li>
+                        <li>Bill payment and money transfer capabilities</li>
+                        <li>Mobile check deposit</li>
+                        <li>Budgeting and financial planning tools</li>
+                        <li>Push notifications for account activity</li>
+                    </ul>
+                    
+                    <h5>Technologies Used</h5>
+                    <div class="tech-stack">
+                        <span class="tech-badge">React Native</span>
+                        <span class="tech-badge">Firebase</span>
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">Plaid API</span>
+                        <span class="tech-badge">AWS</span>
+                    </div>
+                    
+                    <h5>Results</h5>
+                    <ul>
+                        <li>45% of customers adopted mobile banking within 6 months</li>
+                        <li>Reduced branch transaction volume by 30%</li>
+                        <li>Improved customer satisfaction rating from 3.8 to 4.6 stars</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="project-link"><i class="fab fa-app-store me-2"></i> App Store</a>
+                    <a href="#" class="project-link"><i class="fab fa-google-play me-2"></i> Google Play</a>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Additional modals would follow the same pattern -->
+    <!-- For brevity, I've included 3 modals but you would add the remaining 3 -->
+
+    <!-- Team Section -->
+    <section id="team" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title">Meet Our Team</h2>
+                    <p class="lead">Our talented professionals are dedicated to delivering exceptional results</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="team-card text-center">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Team Member" class="team-img w-100">
+                        <div class="p-4">
+                            <h4>Gabriel Anie</h4>
+                            <p class="text-primary">CEO & Founder</p>
+                            <p>With over 10 years of experience in digital marketing and web development.</p>
+                            <div class="social-icons mt-3">
+                                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="team-card text-center">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Team Member" class="team-img w-100">
+                        <div class="p-4">
+                            <h4>Sarah Johnson</h4>
+                            <p class="text-primary">Creative Director</p>
+                            <p>Specializes in brand identity, UI/UX design, and creative strategy.</p>
+                            <div class="social-icons mt-3">
+                                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="team-card text-center">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Team Member" class="team-img w-100">
+                        <div class="p-4">
+                            <h4>Michael Chen</h4>
+                            <p class="text-primary">Lead Developer</p>
+                            <p>Expert in full-stack development, cloud architecture, and emerging technologies.</p>
+                            <div class="social-icons mt-3">
+                                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="team-card text-center">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=761&q=80" alt="Team Member" class="team-img w-100">
+                        <div class="p-4">
+                            <h4>Emily Rodriguez</h4>
+                            <p class="text-primary">Marketing Director</p>
+                            <p>Focuses on data-driven marketing strategies and campaign optimization.</p>
+                            <div class="social-icons mt-3">
+                                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title">What Our Clients Say</h2>
+                    <p class="lead">Don't just take our word for it - hear from some of our satisfied clients</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Client" class="testimonial-img">
+                            <div>
+                                <h5 class="mb-0">Robert Wilson</h5>
+                                <p class="text-muted mb-0">CEO, TechSolutions</p>
+                            </div>
+                        </div>
+                        <p class="mb-0">"Working with Gabriel Anie Agency transformed our online presence. Their team delivered a stunning website that perfectly captures our brand identity and has significantly increased our lead generation."</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Client" class="testimonial-img">
+                            <div>
+                                <h5 class="mb-0">Jennifer Martinez</h5>
+                                <p class="text-muted mb-0">Marketing Director, StyleHub</p>
+                            </div>
+                        </div>
+                        <p class="mb-0">"The digital marketing campaign developed by Gabriel Anie Agency exceeded our expectations. Our online sales increased by 45% in just three months, and we continue to see impressive ROI from their strategies."</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Client" class="testimonial-img">
+                            <div>
+                                <h5 class="mb-0">David Thompson</h5>
+                                <p class="text-muted mb-0">Founder, InnovateLabs</p>
+                            </div>
+                        </div>
+                        <p class="mb-0">"The mobile app developed by Gabriel Anie Agency has been a game-changer for our business. The user experience is seamless, and our customer engagement has skyrocketed since launch."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p class="lead">Ready to take your digital presence to the next level? Contact us today!</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 mb-4 mb-lg-0">
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Your Name</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Your Email</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Subject</label>
+                                <input type="text" class="form-control" id="subject" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-info">
+                        <h3 class="text-white mb-4">Contact Information</h3>
+                        <div class="d-flex mb-4">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-white">Address</h5>
+                                <p>123 Digital Avenue, Tech City, TC 10101</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-4">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-white">Phone</h5>
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-4">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-white">Email</h5>
+                                <p>info@gabrielanie.com</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <h5 class="text-white mb-3">Follow Us</h5>
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="text-white mb-4">Gabriel Anie</h3>
+                    <p>We are a full-service digital agency dedicated to helping businesses thrive in the digital world through innovative solutions and strategic thinking.</p>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-white mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#home" class="text-white-50 text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="#about" class="text-white-50 text-decoration-none">About</a></li>
+                        <li class="mb-2"><a href="#services" class="text-white-50 text-decoration-none">Services</a></li>
+                        <li class="mb-2"><a href="#portfolio" class="text-white-50 text-decoration-none">Portfolio</a></li>
+                        <li class="mb-2"><a href="#contact" class="text-white-50 text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-white mb-4">Services</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Web Development</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">App Development</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Digital Marketing</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">UI/UX Design</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Branding</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="text-white mb-4">Newsletter</h5>
+                    <p class="text-white-50">Subscribe to our newsletter for the latest updates and insights.</p>
+                    <form>
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your email">
+                            <button class="btn btn-primary" type="button">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="my-5 bg-white-50">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="text-white-50 mb-0">© 2023 Gabriel Anie Digital Agency. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white-50 me-3 text-decoration-none">Privacy Policy</a>
+                    <a href="#" class="text-white-50 text-decoration-none">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Navbar scroll effect
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 50) {
+                    $('.navbar').addClass('scrolled');
+                } else {
+                    $('.navbar').removeClass('scrolled');
+                }
+                
+                // Back to top button
+                if ($(this).scrollTop() > 300) {
+                    $('.back-to-top').addClass('show');
+                } else {
+                    $('.back-to-top').removeClass('show');
+                }
+            });
+            
+            // Smooth scrolling
+            $('a[href*="#"]').on('click', function(e) {
+                e.preventDefault();
+                
+                $('html, body').animate(
+                    {
+                        scrollTop: $($(this).attr('href')).offset().top - 70,
+                    },
+                    500,
+                    'linear'
+                );
+            });
+            
+            // Contact form submission
+            $('#contactForm').on('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+                this.reset();
+            });
+        });
+    </script>
+</body>
+</html>
